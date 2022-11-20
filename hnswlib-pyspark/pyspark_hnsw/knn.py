@@ -201,7 +201,8 @@ class BruteForceSimilarity(JavaEstimator, _KnnParams, JavaMLReadable, JavaMLWrit
     @keyword_only
     def __init__(self, identifierCol="id", partitionCol=None, queryIdentifierCol=None, queryPartitionsCol=None,
                  parallelism= None, featuresCol="features", predictionCol="prediction", numPartitions=1, numReplicas=0,
-                 k=5, distanceFunction="cosine", excludeSelf=False, similarityThreshold=-1.0, outputFormat="full"):
+                 k=5, distanceFunction="cosine", excludeSelf=False, similarityThreshold=-1.0, outputFormat="full",
+                 initialModel=None):
         super(BruteForceSimilarity, self).__init__()
         self._java_obj = self._new_java_obj("com.github.jelmerk.spark.knn.bruteforce.BruteForceSimilarity", self.uid)
 
@@ -283,10 +284,17 @@ class BruteForceSimilarity(JavaEstimator, _KnnParams, JavaMLReadable, JavaMLWrit
         """
         return self._set(outputFormat=value)
 
+    def setInitialModel(self, value):
+        """
+        Sets the value of :py:attr:`initialModel`.
+        """
+        return self._set(initialModel=value)
+
     @keyword_only
     def setParams(self, identifierCol="id", queryIdentifierCol=None, queryPartitionsCol=None, parallelism=None,
                   featuresCol="features", predictionCol="prediction",numPartitions=1, numReplicas=0, k=5,
-                  distanceFunction="cosine", excludeSelf=False, similarityThreshold=-1.0, outputFormat="full"):
+                  distanceFunction="cosine", excludeSelf=False, similarityThreshold=-1.0, outputFormat="full",
+                  initialModel=None):
         kwargs = self._input_kwargs
         return self._set(**kwargs)
 
@@ -364,7 +372,7 @@ class HnswSimilarity(JavaEstimator, _HnswParams, JavaMLReadable, JavaMLWritable)
     def __init__(self, identifierCol="id", queryIdentifierCol=None, queryPartitionsCol=None, parallelism=None,
                  featuresCol="features", predictionCol="prediction", m=16, ef=10, efConstruction=200, numPartitions=1,
                  numReplicas=0, k=5, distanceFunction="cosine", excludeSelf=False, similarityThreshold=-1.0,
-                 outputFormat="full"):
+                 outputFormat="full", initialModel=None):
         super(HnswSimilarity, self).__init__()
         self._java_obj = self._new_java_obj("com.github.jelmerk.spark.knn.hnsw.HnswSimilarity", self.uid)
 
@@ -464,11 +472,17 @@ class HnswSimilarity(JavaEstimator, _HnswParams, JavaMLReadable, JavaMLWritable)
         """
         return self._set(efConstruction=value)
 
+    def setInitialModel(self, value):
+        """
+        Sets the value of :py:attr:`initialModel`.
+        """
+        return self._set(initialModel=value)
+
     @keyword_only
     def setParams(self, identifierCol="id", queryIdentifierCol=None, queryPartitionsCol=None, parallelism=None,
                   featuresCol="features", predictionCol="prediction", m=16, ef=10, efConstruction=200, numPartitions=1,
                   numReplicas=0, k=5, distanceFunction="cosine", excludeSelf=False, similarityThreshold=-1.0,
-                  outputFormat="full"):
+                  outputFormat="full", initialModel=None):
         kwargs = self._input_kwargs
         return self._set(**kwargs)
 
